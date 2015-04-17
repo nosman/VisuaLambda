@@ -1,4 +1,5 @@
 open Ast
+open Eval
 
 let () = 
   (* (1) get file name from command-line arguments *)
@@ -22,5 +23,14 @@ let () =
     Format.printf "@[";
     Format.printf "Expression:@\n  @[";
     Pprint.print_exp e;
-    Format.printf "@]@\n@\n" in 
+    Format.printf "@]@\n@\n" in
+    (* Evaluate the expression*)
+  let (e', ev) = eval_env e Environment.empty in
+  let _ =
+    Format.printf "@[";
+    Format.printf "Expression:@\n  @[";
+    Pprint.print_exp e';
+    print_endline "\n";
+    Pprint.print_env ev;
+    Format.printf "@]@\n@\n" in
   ()

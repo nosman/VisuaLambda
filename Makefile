@@ -1,6 +1,6 @@
 MAIN=lam
 
-OBJS = ast.cmo lexer.cmo parser.cmo pprint.cmo fvs.cmo eval.cmo main.cmo 
+OBJS = ast.cmo lexer.cmo parser.cmo  fvs.cmo eval.cmo pprint.cmo main.cmo 
 
 %.cmo : %.ml
 	ocamlc -c -g $<

@@ -1,4 +1,5 @@
 open Ast
+open Eval
 
 let print_ident x =
 	Format.printf "%s" x
@@ -25,3 +26,9 @@ let print_exp e =
   Format.printf "@[";
   loop e;
   Format.printf "@]"
+
+  let print_env env =
+  Environment.iter (fun x y -> 
+    Format.printf "\n@[<2>Var %s: @ " x;
+    print_exp y;
+    Format.printf "@]\n") env
