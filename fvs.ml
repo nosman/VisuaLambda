@@ -15,6 +15,7 @@ let rec fvs_exp (e:exp) : VarSet.t =
       VarSet.remove x (fvs_exp e)
     | App(e1,e2) -> 
       VarSet.union (fvs_exp e1) (fvs_exp e2)
+    | Let(x, e1, e2) -> VarSet.union (fvs_exp e1) (VarSet.remove x (fvs_exp e2))
 
 (* generate a variable that is similar to x but fresh for vs *)
 let rec fresh (x:var) (xs:VarSet.t) : var = 

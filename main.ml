@@ -20,6 +20,7 @@ let () =
 
   (* (3) Pretty print the expression *)
   let _ =
+    print_endline (Pprint.json_of_exp e);
     Format.printf "@[";
     Format.printf "Expression:@\n  @[";
     Pprint.print_exp e;
@@ -33,4 +34,6 @@ let () =
     print_endline "\n";
     Pprint.print_env ev;
     Format.printf "@]@\n@\n" in
+  let _ =
+    print_endline (Pprint.json_of_exp e') in
   ()
