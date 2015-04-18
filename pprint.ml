@@ -61,7 +61,7 @@ let print_exp e =
     ^ "\",\n\"body\": " ^ (p e) ^ "}"
 
   let json_of_ident v =
-    "\"" ^ v ^ "\""
+    "{ \"kind\":\"var\", \"id\":\"" ^ v ^ "\""
 
 
 let json_of_exp exp =

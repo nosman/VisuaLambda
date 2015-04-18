@@ -1,0 +1,1 @@
+var FONT_SIZE = "10"
