@@ -16,14 +16,17 @@ let id = ['a' - 'z'] ['a' - 'z' '0' - '9']*
 let ws = [' ' '\t']
 
 rule token = parse
-| ws 		{ token lexbuf }
-| '\n' 		{ incline lexbuf; token lexbuf }
-| "("  		{ LPAREN }
-| ")"  		{ RPAREN }
-| "."  		{ DOT }
-| "lambda" 		{ LAMBDA }
-| id as v 	{ VAR(v) }
-| eof  		{ EOF }
+| ws 		       { token lexbuf }
+| '\n' 		     { incline lexbuf; token lexbuf }
+| "("  		     { LPAREN }
+| ")"  		     { RPAREN }
+| "."  		     { DOT }
+| "="          { EQUALS }
+| "in"         { IN }
+| "let"        { LET }
+| "lambda" 		 { LAMBDA }
+| id as v 	   { VAR(v) }
+| eof  		     { EOF }
 
 | _ as c {
 			let pos = lexbuf.Lexing.lex_curr_p in

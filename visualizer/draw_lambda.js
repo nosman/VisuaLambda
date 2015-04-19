@@ -15,11 +15,9 @@ function draw_app(drawing_func, node, svg, env) {
     //code
 }
 
+//Base case
 function draw_var(drawing_func, node, svg, env) {
-    var variable = svg.rect(env.x, env.y, 35, 20)
-    variable.attr({
-    fill: env.color,
-});
+    labeledRect(node.id, svg, env)
 }
 
 
