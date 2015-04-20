@@ -3,8 +3,11 @@ type token =
   | VAR of (string)
   | LPAREN
   | RPAREN
+  | IN
   | DOT
   | LAMBDA
+  | LET
+  | EQUALS
   | EOF
 
 val exp :

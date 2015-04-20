@@ -6,7 +6,7 @@
 
 %token <int> INT
 %token <string> VAR
-%token LPAREN RPAREN DOT LAMBDA VAR EOF
+%token LPAREN RPAREN IN DOT LAMBDA LET VAR EQUALS EOF
 
 %type <Ast.exp> exp
 
@@ -15,6 +15,7 @@
 %%
 
 exp : LAMBDA VAR DOT exp 	{ Lam ($2, $4) }
+	| LET VAR EQUALS exp IN exp {Let($2, $4, $6)}
 	| appexp			 	{ $1 }
 
 appexp : appexp aexp 		{ App($1, $2) }
