@@ -21,7 +21,10 @@ function incrementEnvOrigin(env, incrementHeight) {
     return env
 }
 
-function labeledRect(str, svg, env) {
+function labeledRect(str, svg, env, color) {
+    if (!color) {
+        color = env.color
+    }
     var textElem = textFactory.text(0, 0, str)
     var bbox = textElem.getBBox()
     console.log("Text bounding box")
@@ -29,7 +32,7 @@ function labeledRect(str, svg, env) {
     var totalHeight = bbox.height + 2.0*LABEL_PADDING
     var totalWidth = bbox.width + 2.0*LABEL_PADDING
     var r = svg.rect(parseFloat(env.x), parseFloat(env.y), totalWidth, totalHeight)
-    r.attr({"fill" : env.color})
+    r.attr({"fill" : color})
     var group = svg.group(r)
     textElem.attr({"font-family" : FONT_FAMILY})
     textElem.attr({"x" : env.x + LABEL_PADDING, "y" : env.y + bbox.height})

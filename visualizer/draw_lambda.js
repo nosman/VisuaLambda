@@ -21,12 +21,29 @@ function draw_lam(drawing_func, node, svg, env) {
     var body = drawing_func(node.body, svg, env)
 }
 
+
+//Want to have a new line after the let expression
 function draw_let(drawing_func, node, svg, env) {
     //code
 }
 
 function draw_app(drawing_func, node, svg, env) {
-    //code
+    var lParen1 = labeledRect("(", svg, env, "#ffffff")
+    
+    env = incrementEnvOrigin(env)
+    var func = drawing_func(node.func, svg, env)
+    
+    env = incrementEnvOrigin(env)
+    var rParen1 = labeledRect(")", svg, env, "#ffffff")
+    
+    env = incrementEnvOrigin(env)
+    var lParen2 = labeledRect("(", svg, env, "#ffffff")
+    
+    env = incrementEnvOrigin(env)
+    var arg = drawing_func(node.arg, svg, env)
+    
+    env = incrementEnvOrigin(env)
+    var rParen2 = labeledRect(")", svg, env, "#ffffff")
 }
 
 //Base case
