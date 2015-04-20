@@ -2,6 +2,7 @@
 //node is the current ast node.
 //Svg is the global svg object.
 //env is a js object that stores the relevant information to draw the current node: eg. origin coordinates, color, etc.
+'use strict'
 
 function draw_lam(drawing_func, node, svg, env) {
     //Pass down relative coords in the env objects
@@ -24,7 +25,29 @@ function draw_lam(drawing_func, node, svg, env) {
 
 //Want to have a new line after the let expression
 function draw_let(drawing_func, node, svg, env) {
-    //code
+    var x = env.x
+    var y = env.y
+    
+    var l = labeledRect("let", svg, env, "#ffffff")
+    
+    env = incrementEnvOrigin(env)
+    var v = labeledRect(node.var, svg, env)
+    
+    env = incrementEnvOrigin(env)
+    var eq = labeledRect("=", svg, env, "#ffffff")
+    
+    env = incrementEnvOrigin(env)
+    var exp = drawing_func(node.equals, svg, env)
+    
+    env = incrementEnvOrigin(env)
+    var i = labeledRect("in", svg, env, "#ffffff")
+    
+    env.x = x
+    env.y = y + env.height + LABEL_PADDING
+    env.width = 0
+    env.height = 0
+    var rest = drawing_func(node.in, svg, env)
+    
 }
 
 function draw_app(drawing_func, node, svg, env) {

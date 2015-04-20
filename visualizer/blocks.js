@@ -15,6 +15,8 @@ function updateEnv(attrs) {
 //Add functions to move around like directions- Origin is like a "cursor"
 function incrementEnvOrigin(env, incrementHeight) {
     env.x = env.x + env.width + LABEL_PADDING
+    console.log("ENV X")
+    console.log(env.x)
     if (incrementHeight) {
         env.y = env.y + env.height + LABEL_PADDING
     }
